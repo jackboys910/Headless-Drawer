@@ -1,4 +1,12 @@
-import { useState, useEffect, Children, cloneElement, isValidElement, type ReactNode } from 'react'
+import {
+  useState,
+  useEffect,
+  Children,
+  cloneElement,
+  isValidElement,
+  type ReactNode,
+  type ReactElement,
+} from 'react'
 import type { PolymorphicProps, AnyEl } from '../../types/polymorphic'
 import { useSidebarCtx } from './SidebarContext'
 import { useLocation } from 'react-router-dom'
@@ -8,6 +16,8 @@ interface IProps {
   active?: boolean
   children: ReactNode
 }
+
+type WithForceLabel = ReactElement<{ forceShowLabel?: boolean }>
 
 export function SidebarSubmenu<E extends AnyEl = 'button'>({
   as,
@@ -30,7 +40,7 @@ export function SidebarSubmenu<E extends AnyEl = 'button'>({
   const showPopover = collapsed && open && orientation === 'desktop'
 
   const renderedItems = items.map((el, i) =>
-    isValidElement(el) ? cloneElement(el, { key: i, forceShowLabel: true }) : el
+    isValidElement(el) ? cloneElement(el as WithForceLabel, { key: i, forceShowLabel: true }) : el
   )
 
   return (
