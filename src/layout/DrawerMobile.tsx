@@ -23,8 +23,11 @@ export const DrawerMobile = () => {
         role="menubar"
         className="fixed inset-x-0 bottom-0 z-20 flex justify-around border-t bg-white py-1 md:hidden"
       >
-        {MENU_ITEMS.map(({ to, label, icon: Icon, hasSub }) =>
-          hasSub ? (
+        {MENU_ITEMS.map((item) => {
+          const { to, label, icon: Icon } = item
+          const hasSub = 'hasSub' in item && Boolean((item as { hasSub?: boolean }).hasSub)
+
+          return hasSub ? (
             <button
               key={to}
               role="menuitem"
@@ -45,7 +48,7 @@ export const DrawerMobile = () => {
               {label}
             </Link>
           )
-        )}
+        })}
       </nav>
 
       {sheet && (
