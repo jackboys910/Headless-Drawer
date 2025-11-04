@@ -1,0 +1,12 @@
+:root {
+  --brand: #fde047;
+  --brand-hover: #facc15;
+}
+
+body {
+  @apply m-0 flex min-h-screen text-gray-800;
+}
+
+#root {
+  width: 100%;
+}
